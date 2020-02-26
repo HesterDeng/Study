@@ -1,4 +1,4 @@
-package com.tunnelkey.tktim.business.Utils;
+package utils;
 
 import com.aspose.words.Document;
 import com.aspose.words.License;
