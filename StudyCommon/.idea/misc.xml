@@ -5,6 +5,13 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../hellospringcloudeureka/pom.xml" />
+        <option value="$PROJECT_DIR$/../hello-spring-cloud-service-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/../hello-spring-cloud-web-admin-ribbon/pom.xml" />
+        <option value="$PROJECT_DIR$/../hello-spring-cloud-web-admin-feign/pom.xml" />
+        <option value="$PROJECT_DIR$/../hello-spring-cloud-zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/../hello-spring-cloud-config/pom.xml" />
+        <option value="$PROJECT_DIR$/../hello-spring-cloud-zipkin/pom.xml" />
       </list>
     </option>
   </component>
