@@ -7,14 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="hello-spring-cloud-admin" />
-        <module name="hello-spring-cloud-config" />
-        <module name="hello-spring-cloud-eureka" />
-        <module name="hello-spring-cloud-service-admin" />
-        <module name="hello-spring-cloud-web-admin-feign" />
-        <module name="hello-spring-cloud-web-admin-ribbon" />
-        <module name="hello-spring-cloud-zipkin" />
-        <module name="hello-spring-cloud-zuul" />
-        <module name="StudyCommon" />
       </profile>
     </annotationProcessing>
   </component>
