@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<style>
+    body,html{
+        margin:0;
+        padding:0;
+    }
+</style>
+
+<body>
+<svg id="svg2"></svg>
+<div class="panel panel-default">
+    <div class="panel-heading">Panel heading without title</div>
+    <div class="panel-body">
+    </div>
+</div>
+<script>
+    var rawData = [
+        { day: '2015-01', quantity: 1240 },
+        { day: '2015-02', quantity: 1905 },
+        { day: '2015-03', quantity: 6232 },
+        { day: '2015-04', quantity: 7545 },
+        { day: '2015-05', quantity: 543 },
+        { day: '2015-06', quantity: 443 },
+        { day: '2015-07', quantity: 246 },
+        { day: '2015-08', quantity: 5445 },
+        { day: '2015-09', quantity: 1154 },
+        { day: '2015-10', quantity: 448 },
+        { day: '2015-11', quantity: 1545 },
+        { day: '2015-12', quantity: 4585 },
+        { day: '2016-01', quantity: 1520 },
+        { day: '2016-02', quantity: 9015 },
+        { day: '2016-03', quantity: 632 },
+        { day: '2016-04', quantity: 745 },
+        { day: '2016-05', quantity: 343 },
+        { day: '2016-06', quantity: 6443 },
+        { day: '2016-07', quantity: 546 },
+        { day: '2016-08', quantity: 1545 },
+        { day: '2016-09', quantity: 1354 },
+        { day: '2016-10', quantity: 848 },
+        { day: '2016-11', quantity: 2155 },
+        { day: '2016-12', quantity: 4585 },
+        { day: '2017-01', quantity: 1540 },
+        { day: '2017-02', quantity: 905 },
+        { day: '2017-03', quantity: 632 },
+        { day: '2017-04', quantity: 745 },
+        { day: '2017-05', quantity: 3543 },
+        { day: '2017-06', quantity: 4443 },
+        { day: '2017-07', quantity: 2546 },
+        { day: '2017-08', quantity: 545 },
+        { day: '2017-09', quantity: 154 },
+        { day: '2017-10', quantity: 4848 },
+        { day: '2017-11', quantity: 155 },
+        { day: '2017-12', quantity: 4585 }
+    ];
+    var svgWidth = 1000;
+    var svgHeight = 500;
+    var margin = { top: 80, right: 40, bottom: 130, left: 40 };
+    var margin2 = { top: 410, right: 40, bottom: 60, left: 40 };
+    var width = svgWidth - margin.left - margin.right;
+    var height = svgHeight - margin.top - margin.bottom;
+    var height2 = svgHeight - margin2.top - margin2.bottom;
+
+    var chart = d3
+        .select('#svg2')
+        .attr('width', svgWidth)
+        .attr('height', svgHeight) // 设置总宽高
+    var parseDate = d3.timeParse('%Y-%m')
+
+    var data = [];
+    for(var i =0;i<rawData.length;i++) {
+        var item = rawData[i];
+        // 把原始数据转为d3可接受的数据
+        data.push({quantity: item.quantity, day: parseDate(item.day)});
+    };
+
+    var xScale = d3
+        .scaleTime()
+        .range([0, width])
+        .domain(
+            d3.extent(data, function(d) {
+                return d.day
+            })
+        );// 设置mainChart x轴
+    var x2Scale = d3
+        .scaleTime()
+        .range([0, width])
+        .domain(xScale.domain()); // 设置subChart x轴
+    var yScale = d3
+        .scaleLinear()
+        .rangeRound([height, 0])
+        .domain([
+            0,
+            d3.max(data, function(d) {
+                return d.quantity
+            })
+        ]); // 设置mainChart y轴
+    var y2Scale = d3
+        .scaleLinear()
+        .range([height2, 0])
+        .domain(yScale.domain()); // 设置subChart y轴
+
+
+    // 设mainChart在最外包层在总图上的相对位置
+    var mainChart = chart
+        .append('g')
+        .attr('class', 'main-chart')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+
+    //x轴主轴
+    var xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat('%Y年%m月'))
+    //x轴辅轴
+    var x2Axis = d3.axisBottom(x2Scale).tickFormat(d3.timeFormat('%Y年%m月'))
+    //y轴主轴
+    var yAxis = d3.axisLeft(yScale).ticks(10)
+
+    //添加x轴到页面
+    mainChart
+        .append('g')
+        .attr('class', 'axis axis--x')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(xAxis);
+    //添加y轴到页面
+    mainChart
+        .append('g')
+        .attr('class', 'axis axis--y')
+        .call(yAxis)
+        .append('text')
+        .attr('y', -16)
+        .attr('dy', '.71em')
+        .style('text-anchor', 'middle')
+        .style('fill', '#000')
+        .text('销量 (千克)');
+    // 画背景线
+    mainChart
+        .selectAll('.axis--y .tick')
+        .append('line')
+        .attr('class', 'bg-line')
+        .attr('stroke', '#fff1c9')
+        // .attr('shape-rendering', 'crispEdges')
+        .attr('x2', width);
+    mainChart.select('.axis--y .bg-line:last-of-type').remove()
+
+    mainChart
+        .selectAll('.axis--x .tick')
+        .append('line')
+        .attr('class', 'bg-line')
+        .attr('stroke', '#ff0000')
+        .attr('y2', -height)
+
+    //面积图
+    var mainAreaPath = d3
+        .area()
+        .curve(d3.curveMonotoneX)
+        .x(function(d, i) {
+            return xScale(d.day)
+        })
+        .y0(yScale(0))
+        .y1(function(d, i) {
+            return yScale(d.quantity)
+        });
+
+    //动画clipPath
+    mainChart
+        .append('defs')
+        .append('clipPath')
+        .attr('id', 'clip-main')
+        .append('rect')
+        .attr('height', height + 40)
+        .attr('y', '-10')
+        .attr('x', '-10')
+        .attr('width', 0)
+        .transition()
+        .duration(2000)
+        .attr('width', width + 70)
+
+    mainChart.append('g')
+        .append('path')
+        .attr('class', 'area')
+        .datum(data)
+        .attr('d', mainAreaPath)
+        .attr('stroke', 'none')
+        .attr('stroke-width', 1)
+        .attr('fill', 'steelblue')
+        .attr('clip-path', 'url(#clip-main)')
+    //添加关键点
+    var circle = mainChart
+        .append('g')
+        .selectAll('g')
+        .data(data)
+        .enter()
+        .append('g')
+        .attr('clip-path', 'url(#clip-main)')
+    circle
+        .append('circle')
+        .attr('cx', function(d, i) {
+            return xScale(d.day)
+        })
+        .attr('cy', function(d, i) {
+            return yScale(d.quantity)
+        })
+        .attr('r', '5')
+        .attr('fill', 'red')
+
+    circle
+        .append('text')
+        .attr('x', function(d) {
+            return xScale(d.day)
+        })
+        .attr('dx', '1em')
+        .attr('y', function(d) {
+            return yScale(d.quantity)
+        })
+        .text(function(d) {
+            return d.quantity
+        })
+        .attr('font-size', '10')
+
+    var subChart = chart
+        .append('g')
+        // 设subChart的最外包层在总图上的相对位置
+        .attr('transform', 'translate(' + margin2.left + ',' + margin2.top + ')')
+
+    //添加x轴到页面
+    subChart
+        .append('g')
+        .attr('transform', 'translate( 0, ' + height2 + ' )')
+        .call(x2Axis)
+
+    //subArea 面积path
+    var subAreaPath = d3
+        .area()
+        .curve(d3.curveMonotoneX)
+        .x(function(d) {
+            return x2Scale(d.day)
+        })
+        .y0(height2)
+        .y1(function(d) {
+            return y2Scale(d.quantity)
+        })
+
+    //接入数据画面积图
+    subChart
+        .append('g')
+        .append('path')
+        .datum(data)
+        .attr('d', subAreaPath)
+        .attr('stroke', 'none')
+        .attr('stroke-width', 2)
+        .attr('fill', 'blue')
+
+    /***画刷缩放部分***/
+    //画刷函数
+    function brushed(a, b, c) {
+        if (d3.event.sourceEvent && d3.event.sourceEvent.type === 'zoom') return
+        //通过事件对象获取画刷目前的长度以及位置，类似brush.move(selection, [50, 100])
+        var s = d3.event.selection || x2Scale.range()
+        //通过x2Scale.invert转化为新的xScale的domain
+        xScale.domain(s.map(x2Scale.invert, x2Scale))
+        //设置完新的xScale 重绘面积图以及x坐标轴
+        mainChart.select('.area').attr('d', mainAreaPath)
+        mainChart.select('.axis--x').call(xAxis)
+
+        //选取面积图上的所有点与文字，重新赋值位置信息
+        circle
+            .select('circle')
+            .attr('cx', function(d, i) {
+                return xScale(d.day)
+            })
+        circle
+            .select('text')
+            .attr('x', function(d) {
+                return xScale(d.day)
+            })
+    }
+
+    //缩放函数
+    function zoomed() {
+        if (d3.event.sourceEvent && d3.event.sourceEvent.type === 'brush') return
+        //t为随着滚轮缩放的动态比例值包含缩放信息k以及transform信息x和y
+        var t = d3.event.transform
+        //通过t上的rescaleX方法重新定义动态的domain且绑定至xScale
+        xScale.domain(t.rescaleX(x2Scale).domain())
+        //重新绘制面积图与坐标轴
+        mainChart.select('.area').attr('d', mainAreaPath)
+        mainChart.select('.axis--x').call(xAxis)
+        //选取所有面积图上的点和文字动态修改位置信息
+        circle
+            .select('circle')
+            .attr('cx', function(d, i) {
+                return xScale(d.day)
+            })
+        circle
+            .select('text')
+            .attr('x', function(d) {
+                return xScale(d.day)
+            })
+
+
+        //当面积图产生缩放时，让brush跟着变化大小与位置
+        //s为获取的当前面积图的domain(是一个时间数组)
+        var s = xScale.domain()
+        //把当前的domain通过x2Scale转化为range的数字数组(即为brush的位置信息)
+        var d = [];
+        for(var j =0;j<s.length;j++){
+            d.push(x2Scale(s[j]));
+        }
+        //通过brush.move方法动态修改brush的大小与位置
+        brush.move(subChart.select('.brush'), d)
+    }
+
+
+    //定义画刷
+    var brush = d3
+        .brushX()
+        .extent([ [0, 0], [width, height2] ])
+        .on('brush end', brushed)
+
+    //定义缩放zoom
+    var zoom = d3
+        .zoom() // 设置zoom
+        //设置缩放范围
+        .scaleExtent([1, Infinity])
+        //设置transform的范围
+        .translateExtent([[0, 0], [width, height]])
+        //设置缩放的视口的大小; 注:此时视口大小与transform范围一样说明无法拖动只可滚轮缩放
+        .extent([[0, 0], [width, height]])
+        .on('zoom end', zoomed)
+
+    //子图
+    subChart
+        .append('g') // 添加画刷
+        .attr('class', 'brush')
+        .call(brush)
+        // .call(brush.move, xScale.range())
+        //初始笔刷刷取范围
+        .call(brush.move, [50, 200])
+
+    chart
+        .append('g')
+        .append('rect') // 添加刷放方块
+        .attr('class', 'zoom')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('cursor', 'move')
+        .attr('pointer-events', 'all')
+        .attr('fill', 'none')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+        .call(zoom)
+
+</script>
+
+</body>
+</html>
