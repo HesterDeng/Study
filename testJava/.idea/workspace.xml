@@ -1,33 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a662bf9-dabe-4f80-8bbe-149bf06d6a8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/file/AnalysisFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/file/PCASBinReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/http/sendHttp2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/source/5d2ab04c-101d-4d91-9c6d-44fcebc9a68c.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/source/testPic.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/5d2ab04c-101d-4d91-9c6d-44fcebc9a68c.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/TMMSSocket.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/d3Test/TMMSZKTDetail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/d3Test/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/echarts/TMMSChartCommon.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/echarts/TMMSChartInterface.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/echarts/TimeLegendChart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/js/axisHelper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/js/brushzoom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/testCanvas.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/testPic.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testJava/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJava/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testJava/http/sendHttp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJava/http/sendHttp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testJava/web/testBrush.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJava/web/testBrush.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/http/sendHttp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/sendHttp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/testBrush.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/d3Test/testBrush.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/testBrush2.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/d3Test/testBrush2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testJava.iml" beforeDir="false" afterPath="$PROJECT_DIR$/testJava.iml" afterDir="false" />
-    </list>
+    <list default="true" id="2a662bf9-dabe-4f80-8bbe-149bf06d6a8f" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +18,7 @@
     <session id="-551300295">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.26" value="2" />
           <entry key="project.open.time.28" value="1" />
@@ -128,7 +102,11 @@
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/web/js/axisHelper.js">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="69" lean-forward="true" selection-start-line="7" selection-start-column="69" selection-end-line="7" selection-end-column="69" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -283,7 +261,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589445492799" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589445916946" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/jar" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -416,15 +394,16 @@
       <workItem from="1587347014295" duration="3296000" />
       <workItem from="1587439863940" duration="37214000" />
       <workItem from="1588907008922" duration="3844000" />
-      <workItem from="1589266797726" duration="1038000" />
+      <workItem from="1589266797726" duration="1543000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165178000" />
+    <option name="totallyTimeSpent" value="165683000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27132195" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -662,7 +641,11 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/web/js/axisHelper.js">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="69" lean-forward="true" selection-start-line="7" selection-start-column="69" selection-end-line="7" selection-end-column="69" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
