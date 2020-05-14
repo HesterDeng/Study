@@ -11,9 +11,9 @@ public class sendHttp {
 
     public static void main(String[] args) {
         String uri = "http://localhost:8021/api/tmms/v3";
-        String author = "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoyLCJzdWIiOiIwZGNmNmMyMS04ZGFlLTQ1MjgtYTRlMy00YzkzYjJlMjRiZDgiLCJDb21wYW55SWQiOiJkNDJhYmQxMC05NzE3LTQxY2YtYTI2Ny1jODQwNGQ1OTcyYzciLCJVc2VySWQiOiIwZGNmNmMyMS04ZGFlLTQ1MjgtYTRlMy00YzkzYjJlMjRiZDgiLCJleHAiOjE1ODUyMTg1NzksImlhdCI6MTU4NTIwNDE3OSwianRpIjoiYWMyM2E0MjgtMmQ2Yy00OTJmLTlkZWItN2E3OGM0YWUxNjYzIn0.xuK70ctOzjQCDaFxEsix-1Ik3DE75X54xCz0jTWcCTE";
+        String author = "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoyLCJzdWIiOiJlMjUwYWY1NS0yM2U0LTQ0ZjktYWQ2OS03NTc0Y2FkYWFlMTIiLCJDb21wYW55SWQiOiIyNGY0NWNhOC01NDQ2LTQ5ZWQtODE4NS1kZjJiNmIwZDFiNTIiLCJVc2VySWQiOiJlMjUwYWY1NS0yM2U0LTQ0ZjktYWQ2OS03NTc0Y2FkYWFlMTIiLCJleHAiOjE1ODY4NTcxMDIsImlhdCI6MTU4Njg0MjcwMiwianRpIjoiOWRkNjVhMWEtZTJiNS00OWUxLTliNGItNjJlMGQ4MzVlM2VmIn0.KFfMpBHNsngZpRP0d3lJSYWwinH7_obQrUP3CbvrqLw";
 
-        for(int i =100;i<200;i++){
+        for(int i =100;i<101;i++){
             URL url = null;
             try {
                 url = new URL(uri);
@@ -35,7 +35,7 @@ public class sendHttp {
                 builder.setNumOfSection(452);
                 builder.setRectLegend(0.05);
                 builder.setScanDataType("22222");
-                builder.setMonitoringTime("2020-03-19 02:21:50.839Z");
+                builder.setMonitoringTime("2020/03/22 02:21:50");
                 //获取文件
                 String path = "D://需求//监控量测//监控量测数据版本2//测试1//test1（里程DK0+000)/0.5_1";
                 String path2 = "D://需求//监控量测//监控量测数据版本2//测试1//test1（里程DK0+000)/1_1.5";

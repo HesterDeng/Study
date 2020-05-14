@@ -32,7 +32,7 @@
         areaWidth = svg.attr("width") - margin.left-margin.right,
         areaHeight = svg.attr("height") - margin.top - margin.bottom,
         g = svg.append("g")
-            .attr("transform","translate(${margin.left},${margin.top})")
+            .attr("transform","translate("+margin.left+","+margin.top+")")
             .attr("width",areaWidth)
             .attr("height",areaHeight)
 
@@ -61,7 +61,7 @@
         .duration(500)
         .ease(d3.easeLinear)
     var xGrooup = g.append("g")
-        .attr("transform",'translate(0,${areaHeight})')
+        .attr("transform","translate("+0+","+areaHeight+")")
         .call(xAxis)
 
     var yGroup =  g.append("g")
@@ -116,7 +116,7 @@
     var xTop = d3.axisTop(xBrush);
 
     var brushBox = svg.append("g")
-        .attr("transform","translate(${margin.left},${margin.top})")
+        .attr("transform","translate("+margin.left+","+margin.top+")")
         .attr("class", "brushBox");
 
     brushBox.append('g')
@@ -147,7 +147,7 @@
         if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
         var s = d3.event.selection || xScale.range();
         xScale.domain(s.map(xBrush.invert, xBrush));
-        zoomRect .call(zoom.transform, d3.zoomIdentity.scale(areaWidth / (s[1] - s[0]))
+        zoomRect.call(zoom.transform, d3.zoomIdentity.scale(areaWidth / (s[1] - s[0]))
             .translate(-s[0], 0))
 
     }

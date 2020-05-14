@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="test" width="700" height="500">
+
+</canvas>
+<script>
+    var c=document.getElementById("test");
+    var ctx=c.getContext("2d");
+    var circles = [
+        {
+            EndAngle: 47.9931977681977,
+            R: 5.27,
+            StartAngle: 0,
+            X: -0.0025875319324768498,
+            Y: -0.4766300884280099
+        },
+        {
+            EndAngle: 128.992170032135,
+            R: 5.27,
+            StartAngle: 47.9931977681987,
+            X: -0.0025875319324768498,
+            Y: -0.4766300884280099
+        }, {
+            EndAngle: 196.417638086197,
+            R: 5.27,
+            StartAngle: 128.992170032135,
+            X: -0.0025875319324768498,
+            Y: -0.4766300884280099
+        }, {
+            EndAngle: 253.275617276125,
+            R: 3.62,
+            StartAngle: 196.417638086197,
+            X: -1.585312102262833,
+            Y: -0.9429807445380902
+        }, {
+            EndAngle: 286.724382723875,
+            R: 9.11999999997063,
+            StartAngle: 253.275617276125,
+            X: -0.0025875319324768498,
+            Y: 4.324369911541908
+        }, {
+            EndAngle: 343.582361913803,
+            R: 3.61999999999998,
+            StartAngle: 286.724382723875,
+            X: 1.5801370384069742,
+            Y: -0.9429807445380902
+        },{
+            EndAngle: 360,
+            R: 5.27,
+            StartAngle: 343.582361913803,
+            X: -0.0025875319324768498,
+            Y: -0.4766300884280099
+        }
+    ];
+    ctx.scale(1,-1);
+    ctx.translate(0,-500);
+    ctx.strokeStyle = "#008000";
+    ctx.fillStyle = "#F5DFDF";
+    ctx.lineWidth=2;
+    ctx.beginPath();
+    var scale = 20;
+    for(var i =0;i<circles.length;i++){
+        var cc = circles[i];
+        ctx.arc(350+cc.X*scale,250+cc.Y*scale,cc.R*scale,cc.StartAngle/180*Math.PI,cc.EndAngle/180*Math.PI);
+    }
+    ctx.stroke();
+    ctx.fill();
+
+
+    ctx.strokeStyle = "#db2020";
+    ctx.lineWidth=2;
+    ctx.beginPath();
+    var scale = 20;
+    for(var i =0;i<circles.length-4;i++){
+        var cc = circles[i];
+        ctx.arc(350+cc.X*scale,250+cc.Y*scale,cc.R*scale,cc.StartAngle/180*Math.PI,cc.EndAngle/180*Math.PI);
+    }
+    ctx.closePath();
+    ctx.stroke();
+
+    //圆点
+    ctx.fillStyle = "#008000";
+    ctx.beginPath();
+    ctx.arc(300,300,10,0,2*Math.PI);
+    ctx.fill();
+
+    //×
+    ctx.strokeStyle = "#000000";
+    ctx.beginPath();
+    ctx.moveTo(200,300);
+    ctx.lineTo(220,320);
+    ctx.moveTo(200,320);
+    ctx.lineTo(220,300);
+    ctx.stroke();
+
+    //文字
+    ctx.scale(1,-1);
+    ctx.translate(0,-500);
+    ctx.strokeText("B0.014",50,50);
+    ctx.save();
+    var angle = 180;
+    ctx.rotate(angle/180*Math.PI);
+    ctx.font="12px SourceHanSansCN-Light";
+    ctx.lineWidth=1;
+    ctx.strokeText("B0.014",50*Math.cos(angle/180*Math.PI),-50*Math.sin(angle/180*Math.PI));
+    ctx.restore();
+</script>
+</body>
+</html>

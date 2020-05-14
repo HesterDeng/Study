@@ -7,7 +7,7 @@
 </head>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
       integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
 <style>
     body,html{
         margin:0;
@@ -75,6 +75,7 @@
         .attr('height', svgHeight) // 设置总宽高
     var parseDate = d3.timeParse('%Y-%m')
 
+    //return { ...item, day: parseDate(item.day) }
     var data = [];
     for(var i =0;i<rawData.length;i++) {
         var item = rawData[i];
@@ -288,27 +289,41 @@
         //t为随着滚轮缩放的动态比例值包含缩放信息k以及transform信息x和y
         var t = d3.event.transform
         //通过t上的rescaleX方法重新定义动态的domain且绑定至xScale
-        xScale.domain(t.rescaleX(x2Scale).domain())
+        var xScaleTemp = t.rescaleX(xScale);
         //重新绘制面积图与坐标轴
-        mainChart.select('.area').attr('d', mainAreaPath)
-        mainChart.select('.axis--x').call(xAxis)
+        mainChart.select('.area').attr('d', function () {
+            return d3
+                .area()
+                .curve(d3.curveMonotoneX)
+                .x(function(d, i) {
+                    return xScaleTemp(d.day)
+                })
+                .y0(yScale(0))
+                .y1(function(d, i) {
+                    return yScale(d.quantity)
+                });
+        })
+        mainChart.select('.axis--x').call(xAxis.scale(xScaleTemp))
         //选取所有面积图上的点和文字动态修改位置信息
         circle
             .select('circle')
             .attr('cx', function(d, i) {
-                return xScale(d.day)
+                return xScaleTemp(d.day)
             })
         circle
             .select('text')
             .attr('x', function(d) {
-                return xScale(d.day)
+                return xScaleTemp(d.day)
             })
 
 
         //当面积图产生缩放时，让brush跟着变化大小与位置
         //s为获取的当前面积图的domain(是一个时间数组)
-        var s = xScale.domain()
+        var s = xScaleTemp.domain()
         //把当前的domain通过x2Scale转化为range的数字数组(即为brush的位置信息)
+        //let d = s.map(item => {
+        //     return x2Scale(item)
+        // })
         var d = [];
         for(var j =0;j<s.length;j++){
             d.push(x2Scale(s[j]));
